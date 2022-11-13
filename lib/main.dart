@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
               stream: counterBloc.counterStream,
               builder: (context, snapshot) {
                 return Text(
-                  '$_counter',
+                  '${snapshot.data}',
                   style: Theme.of(context).textTheme.headline4,
                 );
               },
@@ -60,8 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _counter++;
-          counterBloc.counterSink.add(_counter);
+          counterBloc.counterEventSink.add(CounterActions.increment);
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
